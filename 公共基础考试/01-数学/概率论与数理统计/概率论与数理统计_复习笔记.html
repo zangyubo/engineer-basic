@@ -67,6 +67,23 @@
     color: #7a4a12; font-size: 14px;
   }
   .tip b { color: #c0392b; }
+  /* 解析块 */
+  .sol {
+    background: #eefaf0; border-left: 4px solid #27ae60;
+    padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0;
+    color: #1e4d2b; font-size: 14px; line-height: 1.9;
+  }
+  .sol b { color: #c0392b; }
+  .sol ul { margin: 6px 0 2px; }
+  /* 例题图表容器 */
+  .chart-box {
+    margin: 12px 0; border: 1px solid #e3ecf7; border-radius: 8px;
+    padding: 8px; background: #fafcff;
+  }
+  .chart-box .cap {
+    text-align: center; font-size: 13px; color: #2c5282;
+    margin-top: 4px; font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -290,6 +307,24 @@ $$P(A)=C_n^k p^k(1-p)^{n-k}$$
 
 <div class="tip"><b>讲解</b>：泊松描述"单位时间稀有事件次数"，$\lambda$ 就是平均次数。<b>$E=D=\lambda$</b> 是它的标志。</div>
 
+<div class="sol"><b>解析</b>：<br/>
+<b>① 建模</b>：设 $X$ = 某分钟内通过路口的车辆数。平均每分钟 2 辆 ⟹ $\lambda=2$，即 $X\sim P(2)$，$P(X=k)=e^{-2}\cdot 2^k/k!\ (k=0,1,2,\dots)$。可用泊松的三个前提：各车独立通过、极短时间内同时过两辆及以上的概率可忽略、平均速率恒定。<br/>
+<b>② 计算拆解</b>：$P(X=3)=e^{-2}\cdot\dfrac{2^3}{3!}=e^{-2}\cdot\dfrac{8}{6}\approx0.1353\times1.3333\approx0.1804\approx0.180$。<br/>
+<b>③ 标志性质</b>：$E(X)=D(X)=\lambda=2$——期望=方差=λ 是泊松的"身份证"，可反推参数、判断分布；最可能取值（众数）在 λ 附近（λ=2 时 $k=1,2$ 并列最高，各约 0.271），但题目问"恰好 3 辆"，直接套公式。<br/>
+<b>④ 易错变式</b>：<br/>
+<ul>
+<li><b>λ 随时间段伸缩</b>：若改问"3 分钟内至多 5 辆"，$\lambda'=2\times3=6$，求 $P(X'\le5)=\sum_{k=0}^{5}e^{-6}\cdot 6^k/k!$；</li>
+<li><b>区间概率逐点累加</b>：$P(X\le3)\approx0.135+0.271+0.271+0.180=0.857$；</li>
+<li><b>对立事件转化</b>：$P(X\ge1)=1-P(X=0)=1-e^{-2}\approx0.865$；</li>
+<li><b>二项近似</b>：$n$ 大、$p$ 小且 $np=\lambda$ 时，$B(n,p)\approx P(\lambda)$。</li>
+</ul></div>
+
+| $k$（过车数） | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|---|
+| $P(X=k)$ | 0.135 | 0.271 | 0.271 | **0.180** | 0.090 | 0.036 | 0.012 |
+
+<div class="chart-box"><div id="poisson-chart" style="width:100%;height:340px;"></div><div class="cap">λ=2 时泊松分布概率柱状图：红色柱为所求 P(X=3)≈0.180，虚线为均值 E(X)=λ=2</div></div>
+
 <div class="ex"><span class="tag">例·均匀</span>$X\sim U(0,10)$，求 $P(3<X<7)$。
 
 **解**：长度比 $=(7-3)/(10-0)=0.4$。</div>
@@ -500,6 +535,10 @@ $$\bar X\sim N\!\left(\mu,\frac{\sigma^2}{n}\right),\quad \frac{(n-1)S^2}{\sigma
 
 <div class="tip"><b>讲解</b>：检验方差用 $\chi^2$，看统计量落在中间还是两端。落在两端就拒绝。</div>
 
+<p align="center"><img src="分布图像/方差检验_条件用途.png" alt="χ² 检验：每个已知条件的用途" style="max-width:100%;border:1px solid #e2e8f0;border-radius:8px;"/></p>
+
+<p align="center"><img src="分布图像/方差检验_拒绝域.png" alt="χ²(9) 方差检验双侧拒绝域（α=0.05）" style="max-width:100%;border:1px solid #e2e8f0;border-radius:8px;"/></p>
+
 ---
 
 ## 十、易错点速查
@@ -540,6 +579,63 @@ $$\bar X\sim N\!\left(\mu,\frac{\sigma^2}{n}\right),\quad \frac{(n-1)S^2}{\sigma
     document.addEventListener('DOMContentLoaded', boot);
   } else {
     boot();
+  }
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+(function(){
+  function initPoissonChart(){
+    var el = document.getElementById('poisson-chart');
+    if (!el || !window.echarts) { return; }
+    el.innerHTML = '';
+    var chart = echarts.init(el);
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: { trigger: 'axis', triggerOn: 'click', renderMode: 'richText', confine: true },
+      grid: { left: 8, right: 16, top: 30, bottom: 8, containLabel: true },
+      xAxis: { type: 'category', name: 'k（每分钟过车数）', data: ['0','1','2','3','4','5','6','7','8','9','10'] },
+      yAxis: { type: 'value', name: '概率', min: 0, max: 0.32 },
+      series: [{
+        name: 'P(X=k)',
+        type: 'bar',
+        data: [
+          { value: 0.1353, itemStyle: { color: '#5470c6' } },
+          { value: 0.2707, itemStyle: { color: '#5470c6' } },
+          { value: 0.2707, itemStyle: { color: '#5470c6' } },
+          { value: 0.1804, itemStyle: { color: '#ee6666' } },
+          { value: 0.0902, itemStyle: { color: '#5470c6' } },
+          { value: 0.0361, itemStyle: { color: '#5470c6' } },
+          { value: 0.0120, itemStyle: { color: '#5470c6' } },
+          { value: 0.0034, itemStyle: { color: '#5470c6' } },
+          { value: 0.0009, itemStyle: { color: '#5470c6' } },
+          { value: 0.0002, itemStyle: { color: '#5470c6' } },
+          { value: 0.0000, itemStyle: { color: '#5470c6' } }
+        ],
+        label: {
+          show: true,
+          position: 'top',
+          fontSize: 10,
+          formatter: function (params) {
+            var v = params && params.value;
+            if (typeof v !== 'number') { return ''; }
+            return v.toFixed(3);
+          }
+        },
+        markLine: {
+          symbol: 'none',
+          lineStyle: { type: 'dashed', color: '#999' },
+          label: { formatter: 'E(X)=D(X)=λ=2', position: 'insideEndTop' },
+          data: [{ xAxis: '2' }]
+        }
+      }]
+    });
+    window.addEventListener('resize', function(){ chart.resize(); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPoissonChart);
+  } else {
+    initPoissonChart();
   }
 })();
 </script>
