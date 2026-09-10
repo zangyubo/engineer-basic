@@ -47,6 +47,7 @@
   .dist-grid figure { margin: 0; background: #fafcff; border: 1px solid #e3ecf7; border-radius: 8px; padding: 8px 8px 6px; }
   .dist-grid figcaption { text-align: center; font-size: 13px; color: #2c5282; margin-top: 4px; font-weight: 600; }
   .dist-grid svg { width: 100%; height: auto; display: block; }
+  .dist-grid img { width: 100%; height: auto; display: block; }
   .katex { font-size: 1.05em; }
   .footer { text-align: center; color: #94a3b8; font-size: 12px; margin-top: 40px; }
 
@@ -226,6 +227,8 @@ $$P(A)=C_n^k p^k(1-p)^{n-k}$$
 
 <div class="tip"><b>讲解</b>：分布函数像一个从 0 爬到 1 的楼梯，$F(x)$ 就是"到 $x$ 为止累计了多少概率"。区间概率 = 两个台阶差。</div>
 
+<p align="center"><img src="分布图像/分布函数_区间概率.png" alt="区间概率=分布函数台阶差（F(1)=0.3, F(2)=0.7, P(1<X≤2)=0.4）" style="max-width:100%;border:1px solid #e2e8f0;border-radius:8px;"/></p>
+
 ### 3.3 六大常用分布（必背 E、D）
 
 | 分布 | 记号 | $E(X)$ | $D(X)$ |
@@ -239,260 +242,31 @@ $$P(A)=C_n^k p^k(1-p)^{n-k}$$
 
 
 
+
+
 **六大常用分布图像**（参数示例：二点 p=0.3、二项 n=10 p=0.3、泊松 λ=3、均匀 U(0,1)、指数 λ=1、正态 N(0,1)）
 
 <div class="dist-grid">
 <figure><figcaption>① 二点分布 B(1, p)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">二点分布 B(1, p)，p=0.3</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.5" x2="620" y2="275.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.5" text-anchor="end" font-size="11" fill="#64748b">0.25</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.5</text>
-<line x1="64" y1="130.5" x2="620" y2="130.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.5" text-anchor="end" font-size="11" fill="#64748b">0.75</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">1</text>
-<line x1="203.0" y1="58" x2="203.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="203.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="481.0" y1="58" x2="481.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="481.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">取值 k</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">P(X=k)</text>
-<rect x="119.6" y="145.0" width="166.8" height="203.0" fill="#2f80ed" rx="2"/>
-<text x="203.0" y="137.0" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="bold">0.7</text>
-<rect x="397.6" y="261.0" width="166.8" height="87.0" fill="#2f80ed" rx="2"/>
-<text x="481.0" y="253.0" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="bold">0.3</text>
-</svg>
+<img src="分布图像/分布-二点.png" alt="① 二点分布 B(1, p)"/>
 </figure>
 <figure><figcaption>④ 均匀分布 U(a, b)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">均匀分布 U(0, 1)</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.5" x2="620" y2="275.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.5" text-anchor="end" font-size="11" fill="#64748b">0.325</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.65</text>
-<line x1="64" y1="130.5" x2="620" y2="130.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.5" text-anchor="end" font-size="11" fill="#64748b">0.975</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">1.3</text>
-<line x1="215.6" y1="58" x2="215.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="215.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="468.4" y1="58" x2="468.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="468.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">x</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">p(x)</text>
-<rect x="215.6" y="124.9" width="252.7" height="223.1" fill="#2f80ed" opacity="0.9"/>
-<line x1="215.6" y1="348.0" x2="215.6" y2="124.9" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
-<line x1="468.4" y1="348.0" x2="468.4" y2="124.9" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="342.0" y="142.9" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="bold">1/(b−a)</text>
-</svg>
+<img src="分布图像/分布-均匀.png" alt="④ 均匀分布 U(a, b)"/>
 </figure>
 <figure><figcaption>② 二项分布 B(n, p)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">二项分布 B(10, 0.3)</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.5" x2="620" y2="275.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.5" text-anchor="end" font-size="11" fill="#64748b">0.075</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.15</text>
-<line x1="64" y1="130.5" x2="620" y2="130.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.5" text-anchor="end" font-size="11" fill="#64748b">0.225</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">0.3</text>
-<line x1="64.0" y1="58" x2="64.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="64.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="119.6" y1="58" x2="119.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="119.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="175.2" y1="58" x2="175.2" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="175.2" y="366" text-anchor="middle" font-size="11" fill="#64748b">2</text>
-<line x1="230.8" y1="58" x2="230.8" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="230.8" y="366" text-anchor="middle" font-size="11" fill="#64748b">3</text>
-<line x1="286.4" y1="58" x2="286.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="286.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">4</text>
-<line x1="342.0" y1="58" x2="342.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="342.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">5</text>
-<line x1="397.6" y1="58" x2="397.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="397.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">6</text>
-<line x1="453.2" y1="58" x2="453.2" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="453.2" y="366" text-anchor="middle" font-size="11" fill="#64748b">7</text>
-<line x1="508.8" y1="58" x2="508.8" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="508.8" y="366" text-anchor="middle" font-size="11" fill="#64748b">8</text>
-<line x1="564.4" y1="58" x2="564.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="564.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">9</text>
-<line x1="620.0" y1="58" x2="620.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="620.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">10</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">成功次数 k</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">P(X=k)</text>
-<rect x="46.2" y="320.7" width="35.6" height="27.3" fill="#2f80ed" rx="1.5"/>
-<text x="64.0" y="315.7" text-anchor="middle" font-size="10" fill="#475569">0.028</text>
-<rect x="101.8" y="231.0" width="35.6" height="117.0" fill="#2f80ed" rx="1.5"/>
-<text x="119.6" y="226.0" text-anchor="middle" font-size="10" fill="#475569">0.121</text>
-<rect x="157.4" y="122.3" width="35.6" height="225.7" fill="#2f80ed" rx="1.5"/>
-<text x="175.2" y="117.3" text-anchor="middle" font-size="10" fill="#475569">0.233</text>
-<rect x="213.0" y="90.1" width="35.6" height="257.9" fill="#2f80ed" rx="1.5"/>
-<text x="230.8" y="85.1" text-anchor="middle" font-size="10" fill="#475569">0.267</text>
-<rect x="268.6" y="154.5" width="35.6" height="193.5" fill="#2f80ed" rx="1.5"/>
-<text x="286.4" y="149.5" text-anchor="middle" font-size="10" fill="#475569">0.200</text>
-<rect x="324.2" y="248.5" width="35.6" height="99.5" fill="#2f80ed" rx="1.5"/>
-<text x="342.0" y="243.5" text-anchor="middle" font-size="10" fill="#475569">0.103</text>
-<rect x="379.8" y="312.5" width="35.6" height="35.5" fill="#2f80ed" rx="1.5"/>
-<text x="397.6" y="307.5" text-anchor="middle" font-size="10" fill="#475569">0.037</text>
-<rect x="435.4" y="339.3" width="35.6" height="8.7" fill="#2f80ed" rx="1.5"/>
-<rect x="491.0" y="346.6" width="35.6" height="1.4" fill="#2f80ed" rx="1.5"/>
-<rect x="546.6" y="347.9" width="35.6" height="0.1" fill="#2f80ed" rx="1.5"/>
-<rect x="602.2" y="348.0" width="35.6" height="0.0" fill="#2f80ed" rx="1.5"/>
-</svg>
+<img src="分布图像/分布-二项.png" alt="② 二项分布 B(n, p)"/>
 </figure>
 <figure><figcaption>⑤ 指数分布 E(λ)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">指数分布 E(λ=1)</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.5" x2="620" y2="275.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.5" text-anchor="end" font-size="11" fill="#64748b">0.275</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.55</text>
-<line x1="64" y1="130.5" x2="620" y2="130.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.5" text-anchor="end" font-size="11" fill="#64748b">0.825</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">1.1</text>
-<line x1="64.0" y1="58" x2="64.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="64.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="175.2" y1="58" x2="175.2" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="175.2" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="286.4" y1="58" x2="286.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="286.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">2</text>
-<line x1="397.6" y1="58" x2="397.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="397.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">3</text>
-<line x1="508.8" y1="58" x2="508.8" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="508.8" y="366" text-anchor="middle" font-size="11" fill="#64748b">4</text>
-<line x1="620.0" y1="58" x2="620.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="620.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">5</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">x</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">p(x)</text>
-<polygon points="64.0,348.0 64.0,84.4 73.3,105.4 82.5,124.8 91.8,142.7 101.1,159.1 110.3,174.2 119.6,188.1 128.9,200.9 138.1,212.6 147.4,223.5 156.7,233.4 165.9,242.6 175.2,251.0 184.5,258.8 193.7,265.9 203.0,272.5 212.3,278.5 221.5,284.1 230.8,289.2 240.1,293.9 249.3,298.2 258.6,302.2 267.9,305.8 277.1,309.2 286.4,312.3 295.7,315.2 304.9,317.8 314.2,320.2 323.5,322.4 332.7,324.5 342.0,326.4 351.3,328.1 360.5,329.7 369.8,331.1 379.1,332.5 388.3,333.7 397.6,334.9 406.9,335.9 416.1,336.9 425.4,337.8 434.7,338.6 443.9,339.3 453.2,340.0 462.5,340.7 471.7,341.3 481.0,341.8 490.3,342.3 499.5,342.8 508.8,343.2 518.1,343.6 527.3,343.9 536.6,344.2 545.9,344.5 555.1,344.8 564.4,345.1 573.7,345.3 582.9,345.5 592.2,345.7 601.5,345.9 610.7,346.1 620.0,346.2 620.0,348.0" fill="#2f80ed" opacity="0.22"/>
-<polyline points="64.0,84.4 73.3,105.4 82.5,124.8 91.8,142.7 101.1,159.1 110.3,174.2 119.6,188.1 128.9,200.9 138.1,212.6 147.4,223.5 156.7,233.4 165.9,242.6 175.2,251.0 184.5,258.8 193.7,265.9 203.0,272.5 212.3,278.5 221.5,284.1 230.8,289.2 240.1,293.9 249.3,298.2 258.6,302.2 267.9,305.8 277.1,309.2 286.4,312.3 295.7,315.2 304.9,317.8 314.2,320.2 323.5,322.4 332.7,324.5 342.0,326.4 351.3,328.1 360.5,329.7 369.8,331.1 379.1,332.5 388.3,333.7 397.6,334.9 406.9,335.9 416.1,336.9 425.4,337.8 434.7,338.6 443.9,339.3 453.2,340.0 462.5,340.7 471.7,341.3 481.0,341.8 490.3,342.3 499.5,342.8 508.8,343.2 518.1,343.6 527.3,343.9 536.6,344.2 545.9,344.5 555.1,344.8 564.4,345.1 573.7,345.3 582.9,345.5 592.2,345.7 601.5,345.9 610.7,346.1 620.0,346.2" fill="none" stroke="#2f80ed" stroke-width="2.5"/>
-<text x="95.1" y="184.5" font-size="12" fill="#c0392b" font-weight="bold">y=λe^(−λx)</text>
-</svg>
+<img src="分布图像/分布-指数.png" alt="⑤ 指数分布 E(λ)"/>
 </figure>
 <figure><figcaption>③ 泊松分布 P(λ)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">泊松分布 P(λ=3)</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.5" x2="620" y2="275.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.5" text-anchor="end" font-size="11" fill="#64748b">0.065</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.13</text>
-<line x1="64" y1="130.5" x2="620" y2="130.5" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.5" text-anchor="end" font-size="11" fill="#64748b">0.195</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">0.26</text>
-<line x1="64.0" y1="58" x2="64.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="64.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="119.6" y1="58" x2="119.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="119.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="175.2" y1="58" x2="175.2" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="175.2" y="366" text-anchor="middle" font-size="11" fill="#64748b">2</text>
-<line x1="230.8" y1="58" x2="230.8" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="230.8" y="366" text-anchor="middle" font-size="11" fill="#64748b">3</text>
-<line x1="286.4" y1="58" x2="286.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="286.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">4</text>
-<line x1="342.0" y1="58" x2="342.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="342.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">5</text>
-<line x1="397.6" y1="58" x2="397.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="397.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">6</text>
-<line x1="453.2" y1="58" x2="453.2" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="453.2" y="366" text-anchor="middle" font-size="11" fill="#64748b">7</text>
-<line x1="508.8" y1="58" x2="508.8" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="508.8" y="366" text-anchor="middle" font-size="11" fill="#64748b">8</text>
-<line x1="564.4" y1="58" x2="564.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="564.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">9</text>
-<line x1="620.0" y1="58" x2="620.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="620.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">10</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">次数 k</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">P(X=k)</text>
-<rect x="46.2" y="292.5" width="35.6" height="55.5" fill="#2f80ed" rx="1.5"/>
-<text x="64.0" y="287.5" text-anchor="middle" font-size="10" fill="#475569">0.050</text>
-<rect x="101.8" y="181.4" width="35.6" height="166.6" fill="#2f80ed" rx="1.5"/>
-<text x="119.6" y="176.4" text-anchor="middle" font-size="10" fill="#475569">0.149</text>
-<rect x="157.4" y="98.1" width="35.6" height="249.9" fill="#2f80ed" rx="1.5"/>
-<text x="175.2" y="93.1" text-anchor="middle" font-size="10" fill="#475569">0.224</text>
-<rect x="213.0" y="98.1" width="35.6" height="249.9" fill="#2f80ed" rx="1.5"/>
-<text x="230.8" y="93.1" text-anchor="middle" font-size="10" fill="#475569">0.224</text>
-<rect x="268.6" y="160.6" width="35.6" height="187.4" fill="#2f80ed" rx="1.5"/>
-<text x="286.4" y="155.6" text-anchor="middle" font-size="10" fill="#475569">0.168</text>
-<rect x="324.2" y="235.5" width="35.6" height="112.5" fill="#2f80ed" rx="1.5"/>
-<text x="342.0" y="230.5" text-anchor="middle" font-size="10" fill="#475569">0.101</text>
-<rect x="379.8" y="291.8" width="35.6" height="56.2" fill="#2f80ed" rx="1.5"/>
-<text x="397.6" y="286.8" text-anchor="middle" font-size="10" fill="#475569">0.050</text>
-<rect x="435.4" y="323.9" width="35.6" height="24.1" fill="#2f80ed" rx="1.5"/>
-<text x="453.2" y="318.9" text-anchor="middle" font-size="10" fill="#475569">0.022</text>
-<rect x="491.0" y="339.0" width="35.6" height="9.0" fill="#2f80ed" rx="1.5"/>
-<rect x="546.6" y="345.0" width="35.6" height="3.0" fill="#2f80ed" rx="1.5"/>
-<rect x="602.2" y="347.1" width="35.6" height="0.9" fill="#2f80ed" rx="1.5"/>
-</svg>
+<img src="分布图像/分布-泊松.png" alt="③ 泊松分布 P(λ)"/>
 </figure>
 <figure><figcaption>⑥ 正态分布 N(μ, σ²)</figcaption>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect width="640" height="400" fill="#ffffff"/>
-<text x="320.0" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f3a5f">正态分布 N(0, 1)</text>
-<line x1="64" y1="348.0" x2="620" y2="348.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="352.0" text-anchor="end" font-size="11" fill="#64748b">0</text>
-<line x1="64" y1="275.2" x2="620" y2="275.2" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="279.2" text-anchor="end" font-size="11" fill="#64748b">0.113</text>
-<line x1="64" y1="203.0" x2="620" y2="203.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="207.0" text-anchor="end" font-size="11" fill="#64748b">0.225</text>
-<line x1="64" y1="130.2" x2="620" y2="130.2" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="134.2" text-anchor="end" font-size="11" fill="#64748b">0.338</text>
-<line x1="64" y1="58.0" x2="620" y2="58.0" stroke="#e8eef5" stroke-width="1"/>
-<text x="56" y="62.0" text-anchor="end" font-size="11" fill="#64748b">0.45</text>
-<line x1="103.7" y1="58" x2="103.7" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="103.7" y="366" text-anchor="middle" font-size="11" fill="#64748b">-3</text>
-<line x1="183.1" y1="58" x2="183.1" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="183.1" y="366" text-anchor="middle" font-size="11" fill="#64748b">-2</text>
-<line x1="262.6" y1="58" x2="262.6" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="262.6" y="366" text-anchor="middle" font-size="11" fill="#64748b">-1</text>
-<line x1="342.0" y1="58" x2="342.0" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="342.0" y="366" text-anchor="middle" font-size="11" fill="#64748b">0</text>
-<line x1="421.4" y1="58" x2="421.4" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="421.4" y="366" text-anchor="middle" font-size="11" fill="#64748b">1</text>
-<line x1="500.9" y1="58" x2="500.9" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="500.9" y="366" text-anchor="middle" font-size="11" fill="#64748b">2</text>
-<line x1="580.3" y1="58" x2="580.3" y2="348" stroke="#e8eef5" stroke-width="1"/>
-<text x="580.3" y="366" text-anchor="middle" font-size="11" fill="#64748b">3</text>
-<line x1="64" y1="348" x2="620" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<line x1="64" y1="58" x2="64" y2="348" stroke="#94a3b8" stroke-width="1.5"/>
-<text x="342.0" y="386" text-anchor="middle" font-size="12" fill="#475569">x</text>
-<text x="16" y="203.0" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 16 203.0)">p(x)</text>
-<polygon points="64.0,348.0 64.0,347.4 68.6,347.3 73.3,347.2 77.9,347.0 82.5,346.8 87.2,346.5 91.8,346.2 96.4,345.8 101.1,345.4 105.7,344.9 110.3,344.3 115.0,343.7 119.6,342.9 124.2,342.0 128.9,341.0 133.5,339.8 138.1,338.5 142.8,336.9 147.4,335.2 152.0,333.3 156.7,331.1 161.3,328.7 165.9,326.0 170.6,323.0 175.2,319.7 179.8,316.0 184.5,312.0 189.1,307.7 193.7,303.0 198.4,297.9 203.0,292.4 207.6,286.5 212.3,280.3 216.9,273.6 221.5,266.6 226.2,259.2 230.8,251.5 235.4,243.5 240.1,235.2 244.7,226.6 249.3,217.8 254.0,208.9 258.6,199.9 263.2,190.8 267.9,181.7 272.5,172.7 277.1,163.8 281.8,155.1 286.4,146.8 291.0,138.7 295.7,131.1 300.3,124.0 304.9,117.4 309.6,111.5 314.2,106.2 318.8,101.6 323.5,97.8 328.1,94.8 332.7,92.6 337.4,91.3 342.0,90.9 346.6,91.3 351.3,92.6 355.9,94.8 360.5,97.8 365.2,101.6 369.8,106.2 374.4,111.5 379.1,117.4 383.7,124.0 388.3,131.1 393.0,138.7 397.6,146.8 402.2,155.1 406.9,163.8 411.5,172.7 416.1,181.7 420.8,190.8 425.4,199.9 430.0,208.9 434.7,217.8 439.3,226.6 443.9,235.2 448.6,243.5 453.2,251.5 457.8,259.2 462.5,266.6 467.1,273.6 471.7,280.3 476.4,286.5 481.0,292.4 485.6,297.9 490.3,303.0 494.9,307.7 499.5,312.0 504.2,316.0 508.8,319.7 513.4,323.0 518.1,326.0 522.7,328.7 527.3,331.1 532.0,333.3 536.6,335.2 541.2,336.9 545.9,338.5 550.5,339.8 555.1,341.0 559.8,342.0 564.4,342.9 569.0,343.7 573.7,344.3 578.3,344.9 582.9,345.4 587.6,345.8 592.2,346.2 596.8,346.5 601.5,346.8 606.1,347.0 610.7,347.2 615.4,347.3 620.0,347.4 620.0,348.0" fill="#2f80ed" opacity="0.22"/>
-<polyline points="64.0,347.4 68.6,347.3 73.3,347.2 77.9,347.0 82.5,346.8 87.2,346.5 91.8,346.2 96.4,345.8 101.1,345.4 105.7,344.9 110.3,344.3 115.0,343.7 119.6,342.9 124.2,342.0 128.9,341.0 133.5,339.8 138.1,338.5 142.8,336.9 147.4,335.2 152.0,333.3 156.7,331.1 161.3,328.7 165.9,326.0 170.6,323.0 175.2,319.7 179.8,316.0 184.5,312.0 189.1,307.7 193.7,303.0 198.4,297.9 203.0,292.4 207.6,286.5 212.3,280.3 216.9,273.6 221.5,266.6 226.2,259.2 230.8,251.5 235.4,243.5 240.1,235.2 244.7,226.6 249.3,217.8 254.0,208.9 258.6,199.9 263.2,190.8 267.9,181.7 272.5,172.7 277.1,163.8 281.8,155.1 286.4,146.8 291.0,138.7 295.7,131.1 300.3,124.0 304.9,117.4 309.6,111.5 314.2,106.2 318.8,101.6 323.5,97.8 328.1,94.8 332.7,92.6 337.4,91.3 342.0,90.9 346.6,91.3 351.3,92.6 355.9,94.8 360.5,97.8 365.2,101.6 369.8,106.2 374.4,111.5 379.1,117.4 383.7,124.0 388.3,131.1 393.0,138.7 397.6,146.8 402.2,155.1 406.9,163.8 411.5,172.7 416.1,181.7 420.8,190.8 425.4,199.9 430.0,208.9 434.7,217.8 439.3,226.6 443.9,235.2 448.6,243.5 453.2,251.5 457.8,259.2 462.5,266.6 467.1,273.6 471.7,280.3 476.4,286.5 481.0,292.4 485.6,297.9 490.3,303.0 494.9,307.7 499.5,312.0 504.2,316.0 508.8,319.7 513.4,323.0 518.1,326.0 522.7,328.7 527.3,331.1 532.0,333.3 536.6,335.2 541.2,336.9 545.9,338.5 550.5,339.8 555.1,341.0 559.8,342.0 564.4,342.9 569.0,343.7 573.7,344.3 578.3,344.9 582.9,345.4 587.6,345.8 592.2,346.2 596.8,346.5 601.5,346.8 606.1,347.0 610.7,347.2 615.4,347.3 620.0,347.4" fill="none" stroke="#2f80ed" stroke-width="2.5"/>
-<line x1="342.0" y1="348.0" x2="342.0" y2="90.9" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="377.7" y="128.9" font-size="12" fill="#c0392b" font-weight="bold">μ=0 对称轴</text>
-</svg>
+<img src="分布图像/分布-正态.png" alt="⑥ 正态分布 N(μ, σ²)"/>
 </figure>
 </div>
+
 
 
 
@@ -501,6 +275,8 @@ $$P(A)=C_n^k p^k(1-p)^{n-k}$$
 **解**：$p=1/2$，$E=1/2$，$D=1/4$。</div>
 
 <div class="tip"><b>讲解</b>：二点分布就是"一次试验，成功 1 失败 0"，最简单的分布。</div>
+
+<p align="center"><img src="分布图像/期望与方差_算法.png" alt="期望与方差算法（二点分布掷硬币）" style="max-width:100%;border:1px solid #e2e8f0;border-radius:8px;"/></p>
 
 <div class="ex"><span class="tag">例·二项</span>射击命中率 0.8，独立射 5 次，恰好命中 4 次？
 
