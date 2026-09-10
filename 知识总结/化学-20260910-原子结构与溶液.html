@@ -1,0 +1,296 @@
+<!--
+  用途：注册电气工程师基础考试复习 —— 公共基础（化学）知识总结
+  内容：二轮复习计划 9-10（四）化学①：原子结构与溶液
+  创建日期：2026-09-10
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>化学① 知识总结 · 原子结构与溶液（2026-09-10）</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --bg:#f8fafc;
+    --ink:#0f172a;
+    --ink-2:#64748b;
+    --line:#e2e8f0;
+    --accent:#3b82f6;
+    --accent-soft:#eff6ff;
+    --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.75;
+    padding:26px 20px 48px;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:.01em;}
+  .meta{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .tag{
+    font-size:11.5px;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:2px 10px;
+  }
+  .tag a{color:var(--accent);text-decoration:none;}
+  .tag a:hover{text-decoration:underline;}
+  .tag b{color:var(--ink);font-weight:600;}
+
+  .sec{
+    font-size:16px;font-weight:700;margin-top:30px;display:flex;align-items:center;gap:10px;
+  }
+  .sec .no{
+    background:var(--accent);color:#fff;font-size:11.5px;font-weight:600;
+    border-radius:6px;padding:2px 8px;letter-spacing:.04em;
+  }
+  .sub{margin-top:16px;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  .sub::before{content:"";width:4px;height:14px;background:var(--accent);border-radius:2px;}
+
+  .card{
+    margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:13px 18px;
+  }
+  .card p,.card li{font-size:13px;color:var(--ink-2);line-height:1.85;}
+  .card p + p{margin-top:6px;}
+  .card b{color:var(--ink);font-weight:600;}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:6px;}
+  .card li{padding-left:16px;position:relative;}
+  .card li::before{
+    content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  .mono{font-family:var(--mono);color:#1d4ed8;font-size:12.5px;}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff;}
+  th,td{padding:8px 14px;text-align:left;border:1px solid var(--line);}
+  th{background:#f8fafc;color:var(--ink-2);font-weight:600;font-size:12px;white-space:nowrap;}
+  .tbl{margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .center{text-align:center;}
+
+  .formula{
+    background:var(--accent-soft);border:1px solid #bfdbfe;border-radius:8px;
+    padding:9px 14px;margin-top:8px;font-size:13px;
+  }
+  .formula .mono{font-size:13px;color:#1d40af;}
+
+  /* 例题 */
+  .qa{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .qa .q{
+    padding:11px 16px;font-size:13px;display:flex;gap:10px;align-items:baseline;
+    cursor:pointer;user-select:none;
+  }
+  .qa .q .n{
+    flex:none;min-width:22px;height:22px;border-radius:6px;background:var(--accent);color:#fff;
+    font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;
+  }
+  .qa .q .t{color:var(--ink);}
+  .qa .q .t b{font-weight:600;}
+  .qa .ans{display:none;padding:0 16px 12px 48px;font-size:12.5px;color:var(--ink-2);}
+  .qa .ans .mono{font-size:12.5px;}
+  .qa.open .ans{display:block;}
+  .qa .q::after{
+    content:"答案";flex:none;font-size:11px;color:var(--accent);border:1px solid #bfdbfe;
+    border-radius:999px;padding:1px 9px;margin-left:auto;
+  }
+  .qa.open .q::after{content:"收起";}
+
+  .summary{margin-top:10px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:13px 18px;}
+  .summary li{font-size:13px;color:var(--ink-2);line-height:1.9;}
+  .summary b{color:var(--ink);font-weight:600;}
+
+  .foot{margin-top:26px;font-size:11.5px;color:var(--ink-2);}
+
+  @media (max-width:640px){
+    th,td{padding:7px 10px;}
+    .qa .ans{padding-left:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>化学① 知识总结：原子结构与溶液</h1>
+  <div class="meta">
+    <span class="tag">2026-09-10（四）</span>
+    <span class="tag">二轮计划 9-10 · 化学 ①</span>
+    <span class="tag">配套：<a href="../公共基础考试/03-化学/元素周期表_原子大小.html">元素周期表</a> · <a href="../公共基础考试/03-化学/原子轨道形状.html">原子轨道</a> · <a href="../公共基础考试/03-化学/杂化轨道.html">杂化轨道</a></span>
+  </div>
+
+  <!-- ===== 一、原子结构 ===== -->
+  <div class="sec"><span class="no">01</span>原子结构（考点 3.1.1 / 3.1.2）</div>
+
+  <div class="sub">原子的组成</div>
+  <div class="card">
+    <p>原子 = 原子核（<b>质子 Z</b> + <b>中子 N</b>）+ 核外电子。</p>
+    <p><b>质量数 A = Z + N</b>；元素符号：左上角质量数、左下角质子数，如 <span class="mono">¹⁶O</span>、<span class="mono">²³⁵U</span>。</p>
+  </div>
+
+  <div class="sub">核外电子排布（重点）</div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>主量子数 n</th><th>能层</th><th>亚层类型</th><th class="center">每层最多电子数</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>K</td><td class="mono">1s</td><td class="center">2</td></tr>
+        <tr><td>2</td><td>L</td><td class="mono">2s 2p</td><td class="center">8</td></tr>
+        <tr><td>3</td><td>M</td><td class="mono">3s 3p 3d</td><td class="center">18</td></tr>
+        <tr><td>4</td><td>N</td><td class="mono">4s 4p 4d 4f</td><td class="center">32</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <ul>
+      <li>每层最多容纳 <b>2n²</b> 个电子；s 亚层 2、p 亚层 6、d 亚层 10、f 亚层 14</li>
+      <li><b>能量最低原理</b>：电子优先填入能量最低的轨道（4s 能量低于 3d，先填 4s 后填 3d）</li>
+      <li><b>泡利不相容原理</b>：同一轨道最多 2 个电子，且自旋方向相反</li>
+      <li><b>洪特规则</b>：等价轨道优先分占、自旋平行；<b>半满/全满结构稳定</b> → 特例：Cr <span class="mono">3d⁵4s¹</span>、Cu <span class="mono">3d¹⁰4s¹</span></li>
+    </ul>
+  </div>
+
+  <div class="sub">电子云与原子轨道</div>
+  <div class="card">
+    <p>电子云 = 电子出现概率的空间分布；原子轨道 = 波函数描述的空间区域。</p>
+    <ul>
+      <li><b>s 轨道</b>：球形，1 个取向；<b>p 轨道</b>：哑铃形（两个沿轴瓣），3 个取向（px、py、pz）；<b>d 轨道</b>：花瓣形，5 个取向</li>
+      <li>每层轨道总数 = <b>n²</b>；每亚层轨道数 = 2l+1</li>
+    </ul>
+    <p>3D 演示见 <a href="../公共基础考试/03-化学/原子轨道形状.html" style="color:var(--accent)">原子轨道形状.html</a></p>
+  </div>
+
+  <div class="sub">元素周期律</div>
+  <div class="card">
+    <p>周期表：7 个周期、18 列（16 个族）；周期数 = 电子层数，主族族数 = 最外层电子数。</p>
+    <p><b>原子半径递变规律</b>（核心考点）：</p>
+    <ul>
+      <li>同周期从左 → 右 <b>减小</b>（核电荷增大，对电子引力增强）</li>
+      <li>同族从上 → 下 <b>增大</b>（电子层数增加，屏蔽作用增大）</li>
+      <li><b>电离能</b>：同周期增大、同族减小；第一电离能特例：Be（2s² 全满）&gt; B（2p¹）</li>
+      <li><b>电负性</b>：F 最大（4.0）；同周期增大、同族减小</li>
+      <li>金属性：同周期减弱、同族增强；非金属性相反</li>
+    </ul>
+    <p>可视化见 <a href="../公共基础考试/03-化学/元素周期表_原子大小.html" style="color:var(--accent)">元素周期表_原子大小.html</a></p>
+  </div>
+
+  <div class="sub">化学键、分子结构与晶体（考点 3.1.3）</div>
+  <div class="card">
+    <ul>
+      <li><b>离子键</b>：阴、阳离子间静电作用（NaCl）；<b>无饱和性、无方向性</b>；强弱看离子势 z/r（电荷↑半径↓ → 键增强：KCl &lt; CaCl₂ &lt; ScCl₃）</li>
+      <li><b>共价键</b>：<b>有饱和性、方向性</b>；σ 键（头碰头）+ π 键（肩并肩）；单键 = 1σ，双键 = 1σ+1π，三键 = 1σ+2π；<b>配位键</b>（电子对一方提供，如 NH₄⁺、[Ag(NH₃)₂]⁺）</li>
+      <li><b>杂化轨道</b>：杂化轨道数 = σ 键数 + 孤对电子对数</li>
+    </ul>
+    <table style="margin-top:8px">
+      <thead><tr><th>杂化类型</th><th>杂化轨道数</th><th class="center">键角</th><th>空间构型</th><th>典型分子</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">sp</td><td>2</td><td class="center">180°</td><td>直线</td><td>CO₂、C₂H₂</td></tr>
+        <tr><td class="mono">sp²</td><td>3</td><td class="center">120°</td><td>平面三角</td><td>BF₃、C₂H₄</td></tr>
+        <tr><td class="mono">sp³</td><td>4</td><td class="center">109°28′</td><td>正四面体</td><td>CH₄、CCl₄</td></tr>
+      </tbody>
+    </table>
+    <ul style="margin-top:8px">
+      <li>不等性杂化：孤对电子压缩键角 → NH₃ ≈107°（三角锥，PCl₃ 同）、H₂O ≈104.5°（V 形，H₂S、SO₂ 同）；配离子 [Ag(NH₃)₂]⁺ 为 sp 直线形</li>
+      <li><b>键的极性与分子极性</b>（常考判断）：极性键 = 不同元素成键（电负性差越大极性越大）；多原子分子看<b>构型对称性</b>——CO₂（直线）<b>非极性</b>、SO₂（V 形）<b>极性</b>；CH₄ 非极性、NH₃/H₂O 极性</li>
+      <li><b>分子间力</b>：取向力（极性-极性）、诱导力（极性-非极性）、色散力（一切分子，分子越大越强）；<b>氢键</b> X–H···Y（X、Y=N/O/F）：HF、H₂O、NH₃、H₃BO₃、CH₃OH、H₃PO₄ 有；HCl、H₂S、PH₃ 无（半径大）</li>
+      <li><b>晶体类型</b>（熔沸点/硬度）：原子晶体（金刚石、SiC、SiO₂）<b>最高</b> &gt; 离子晶体（NaCl）较高 &gt; 金属晶体（良导体、延展）&gt; 分子晶体（CO₂、I₂）最低</li>
+    </ul>
+    <p>教程见 <a href="../公共基础考试/03-化学/杂化轨道.html" style="color:var(--accent)">杂化轨道.html</a></p>
+  </div>
+
+  <!-- ===== 二、溶液 ===== -->
+  <div class="sec"><span class="no">02</span>溶液（考点 3.2）</div>
+
+  <div class="sub">稀溶液的依数性（3.2.1）</div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>依数性</th><th>规律</th><th>公式</th></tr></thead>
+      <tbody>
+        <tr><td>蒸气压下降</td><td>溶质使溶剂蒸气压降低</td><td class="mono">Δp = p⁰·x_B（拉乌尔定律）</td></tr>
+        <tr><td>沸点升高</td><td>与溶质粒子数成正比</td><td class="mono">ΔT_b = K_b·m</td></tr>
+        <tr><td>凝固点降低</td><td>与溶质粒子数成正比</td><td class="mono">ΔT_f = K_f·m</td></tr>
+        <tr><td>渗透压</td><td>与溶质浓度、温度成正比</td><td class="mono">π = cRT（范特霍夫方程）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="formula">要点：依数性只取决于 <b>溶质粒子总数</b>。电解质乘电离粒子数 i（NaCl i=2、CaCl₂ i=3）；质量摩尔浓度 m = 溶质物质的量 / 溶剂质量(kg)</div>
+
+  <div class="sub">酸碱电离平衡（3.2.2）</div>
+  <div class="card">
+    <p>一元弱酸：HA ⇌ H⁺ + A⁻，<b>Ka = [H⁺][A⁻]/[HA]</b>；pH = −lg[H⁺]</p>
+    <p>近似计算（c/Ka ≥ 500）：<b>[H⁺] ≈ √(Ka·c)</b>；电离度 α 随稀释增大</p>
+    <p><b>缓冲溶液</b>（弱酸 + 共轭碱）：<b>pH = pKa + lg([盐]/[酸])</b>；等浓度时 pH = pKa</p>
+    <p>水的离子积：<b>Kw = [H⁺][OH⁻] = 1.0×10⁻¹⁴（25℃）</b>；pH + pOH = 14</p>
+    <p><b>酸碱质子理论</b>：酸 = 质子供体、碱 = 质子受体（共轭酸碱对：HAc/Ac⁻、NH₄⁺/NH₃）；<b>盐类水解</b>：强碱弱酸盐水解显碱性（NaAc）、强酸弱碱盐显酸性（NH₄Cl），"越弱越水解"</p>
+  </div>
+
+  <div class="sub">多相离子平衡 / 溶度积（3.2.3）</div>
+  <div class="card">
+    <p>难溶电解质：A_mB_n(s) ⇌ mAⁿ⁺ + nBᵐ⁻，<b>Ksp = [Aⁿ⁺]ᵐ·[Bᵐ⁻]ⁿ</b></p>
+    <ul>
+      <li><b>同离子效应</b>：加入相同离子使溶解度减小（如 CaSO₄ 中加 CaCl₂）</li>
+      <li><b>Ksp 与溶解度比较</b>：<b>同类型</b>可直接比 Ksp；<b>不同类型</b>（如 AgCl 与 Ag₂CrO₄）须先算溶解度再比</li>
+      <li>沉淀判断：<b>Q &gt; Ksp 生成沉淀；Q &lt; Ksp 沉淀溶解；Q = Ksp 恰好饱和</b></li>
+      <li><b>分步沉淀</b>：多种离子共存时，Q 先达到 Ksp 者先沉淀</li>
+    </ul>
+  </div>
+
+  <!-- ===== 三、例题 ===== -->
+  <div class="sec"><span class="no">03</span>例题（一个知识点配一个题，点击题目看答案）</div>
+
+  <div class="qa">
+    <div class="q"><span class="n">1</span><span class="t">基态 Cr 的价电子排布为？</span></div>
+    <div class="ans"><b>答</b>：<span class="mono">3d⁵4s¹</span>（洪特规则半满稳定，不是 3d⁴4s²）。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">2</span><span class="t">Na、Mg、Al、Cl 原子半径由大到小？</span></div>
+    <div class="ans"><b>答</b>：Na &gt; Mg &gt; Al &gt; Cl（同周期第三周期，从左到右减小）。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">3</span><span class="t">BF₃ 中 B 的杂化类型与分子构型？</span></div>
+    <div class="ans"><b>答</b>：B 有 3 个 σ 键、0 孤对 → <b>sp² 杂化</b>，平面三角形，键角 120°。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">4</span><span class="t">质量摩尔浓度均为 0.1 mol/kg 的葡萄糖与 NaCl 溶液，哪个凝固点更低？</span></div>
+    <div class="ans"><b>答</b>：<b>NaCl</b>（i=2，粒子数是葡萄糖 2 倍，ΔT_f 更大，凝固点更低）。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">5</span><span class="t">0.1 mol/L HAc 与 0.1 mol/L NaAc 等体积混合（pKa=4.74），pH？</span></div>
+    <div class="ans"><b>答</b>：pH = pKa + lg(0.1/0.1) = <b>4.74</b>。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">6</span><span class="t">某溶液 c(Ag⁺)·c(Cl⁻)=2×10⁻¹⁰，Ksp(AgCl)=1.8×10⁻¹⁰，是否生成沉淀？</span></div>
+    <div class="ans"><b>答</b>：Q = 2×10⁻¹⁰ &gt; Ksp = 1.8×10⁻¹⁰ → <b>生成 AgCl 沉淀</b>。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">7</span><span class="t">CO₂ 与 SO₂ 谁是极性分子？为什么？</span></div>
+    <div class="ans"><b>答</b>：<b>SO₂</b> 极性（V 形，键极性不抵消）；CO₂ 非极性（直线形，两 C=O 极性抵消）。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">8</span><span class="t">HCl、H₂S、NH₃、H₃BO₃、PH₃ 中哪些能形成氢键？</span></div>
+    <div class="ans"><b>答</b>：<b>NH₃、H₃BO₃</b>（含 N–H、O–H，N/O 原子半径小）；HCl、H₂S、PH₃ 中 Cl/S/P 半径大，不能。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">9</span><span class="t">AgCl（Ksp=1.8×10⁻¹⁰）与 Ag₂CrO₄（Ksp=1.1×10⁻¹²）谁的溶解度大？能否直接看 Ksp？</span></div>
+    <div class="ans"><b>答</b>：不能直接比（不同类型）。AgCl：s=√Ksp≈1.3×10⁻⁵；Ag₂CrO₄：s=∛(Ksp/4)≈6.5×10⁻⁵ mol/L → 实际 <b>Ag₂CrO₄ 溶解度更大</b>。</div>
+  </div>
+  <div class="qa">
+    <div class="q"><span class="n">10</span><span class="t">金刚石、NaCl、Fe、CO₂ 熔点由高到低？</span></div>
+    <div class="ans"><b>答</b>：金刚石（原子晶体）&gt; NaCl（离子晶体）&gt; Fe（金属晶体）&gt; CO₂（分子晶体）。</div>
+  </div>
+
+  <!-- ===== 四、小结 ===== -->
+  <div class="sec"><span class="no">04</span>本日小结</div>
+  <div class="summary">
+    <ul style="list-style:none">
+      <li>· 原子结构核心：<b>排布三原则</b> + <b>原子半径递变规律</b> + <b>杂化轨道判断</b>（σ+孤对 → sp/sp²/sp³）</li>
+      <li>· 溶液核心：依数性只数粒子数；缓冲溶液 pH 公式；Ksp 与 Q 比较判沉淀</li>
+      <li>· 已用 3 个 3D/可视化页面辅助记忆轨道形状与杂化构型</li>
+    </ul>
+  </div>
+
+  <p class="foot">注册电气工程师基础考试 · 公共基础（化学）复习笔记 · 二轮复习计划 9-10（四）</p>
+</div>
+<script>
+"use strict";
+document.querySelectorAll(".qa").forEach(function (el) {
+  el.addEventListener("click", function () { el.classList.toggle("open"); });
+});
+</script>
+</body>
+</html>

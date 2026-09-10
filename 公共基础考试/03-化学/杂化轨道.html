@@ -1,0 +1,369 @@
+<!--
+  用途：注册电气工程师基础考试复习 —— 公共基础（化学）杂化轨道理论教程
+  知识点：杂化轨道概念、角度函数 h_i(u)=c_s+√3·c_p·(d_i·u)、sp/sp²/sp³ 实心曲面、节面、
+         杂化类型判断（σ键数+孤对电子对数）、常见分子杂化速查、不等性杂化与键角
+  创建日期：2026-09-10
+  绘制方法（数学驱动实心曲面）：
+    单位球面方向 u=(sinθcosφ, sinθsinφ, cosθ)；角度函数 h_i(u)=c_s+√3·c_p·(d_i·u)，c_s²+c_p²=1；
+    球坐标网格采样半径 r = r0·|h_i(u)|²，顶点 P = r·u，生成实心三角网格；
+    h>0 为正相位（红），h<0 为负相位（蓝）。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杂化轨道理论教程 · sp / sp² / sp³（数学描述与实心曲面）</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --bg:#f8fafc;
+    --ink:#0f172a;
+    --ink-2:#64748b;
+    --line:#e2e8f0;
+    --accent:#3b82f6;
+    --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;
+    padding:26px 20px 48px;
+  }
+  .wrap{max-width:1120px;margin:0 auto;}
+  h1{font-size:23px;font-weight:700;letter-spacing:.01em;}
+  .lead{margin-top:6px;font-size:13.5px;color:var(--ink-2);max-width:920px;}
+  .lead b{color:var(--ink);font-weight:600;}
+  .lead .mono{font-family:var(--mono);color:#1d4ed8;font-size:12.5px;}
+
+  .sec{
+    font-size:16px;font-weight:700;margin-top:30px;display:flex;align-items:center;gap:10px;
+  }
+  .sec .no{
+    background:var(--accent);color:#fff;font-size:11.5px;font-weight:600;
+    border-radius:6px;padding:2px 8px;letter-spacing:.04em;
+  }
+  .sec-sub{margin-top:4px;font-size:12.5px;color:var(--ink-2);max-width:920px;}
+
+  .card{
+    margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:14px 18px;max-width:920px;
+  }
+  .card h3{font-size:14px;font-weight:700;margin-bottom:8px;}
+  .card p,.card li{font-size:12.5px;color:var(--ink-2);line-height:1.85;}
+  .card b{color:var(--ink);font-weight:600;}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .card li{padding-left:16px;position:relative;}
+  .card li::before{
+    content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  .card .mono{font-family:var(--mono);color:#1d4ed8;font-size:12px;}
+
+  .math-card{
+    margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    max-width:920px;
+  }
+  .math-card .cap{
+    padding:11px 18px;font-size:13px;font-weight:700;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:8px;
+  }
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th,td{padding:8px 14px;text-align:left;border-bottom:1px solid var(--line);}
+  th{background:#f8fafc;color:var(--ink-2);font-weight:600;font-size:12px;white-space:nowrap;}
+  td:first-child{white-space:nowrap;font-weight:600;}
+  .mono{font-family:var(--mono);font-size:12px;color:#1d4ed8;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .center{text-align:center;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+  .orbitCard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .orbitBox{background:#1e293b;border-bottom:1px solid var(--line);height:300px;position:relative;}
+  .label{
+    position:absolute;bottom:10px;left:14px;color:#cbd5e1;font-size:12.5px;
+    background:rgba(15,23,42,.55);padding:3px 10px;border-radius:999px;letter-spacing:.03em;
+  }
+  .orbDesc{padding:12px 16px;font-size:13px;color:var(--ink-2);line-height:1.75;}
+  .orbDesc b{color:var(--ink);font-weight:600;}
+  .orbDesc .mono{font-size:12px;color:#1d4ed8;}
+
+  .ref{margin-top:16px;font-size:11.5px;color:var(--ink-2);max-width:920px;}
+
+  @media (max-width:720px){
+    .grid{grid-template-columns:1fr;}
+    .orbitBox{height:260px;}
+    table{font-size:12px;}
+    th,td{padding:7px 10px;}
+    td:first-child{white-space:normal;}
+    .mono{white-space:normal;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>杂化轨道理论 · 教程（sp / sp² / sp³）</h1>
+  <p class="lead">本节按"<b>为什么 → 数学描述 → 形状 → 判断方法 → 典型例子</b>"的顺序讲解杂化轨道理论。3D 模型由角度函数 <span class="mono">h_i(u)=c_s+√3·c_p·(d_i·u)</span> 直接生成：单位球面采样方向 u，半径 r = r₀|h(u)|^q（q=2.5，角度分布集中、瓣细长），再沿轨道方向拉伸；<b>红色 = 正相位（大瓣）、蓝色 = 负相位（小瓣）</b>，可拖拽旋转。</p>
+
+  <!-- ===== 01 为什么需要杂化轨道 ===== -->
+  <div class="sec"><span class="no">01</span>为什么需要杂化轨道？—— CH₄ 之谜</div>
+  <div class="card">
+    <p>C 的价电子构型为 2s²2p²，基态只有 <b>2 个未成对电子</b>，按理只能形成 2 个共价键；但 CH₄ 却存在 <b>4 个完全等价的 C–H 键</b>（键长、键能相同，键角均为 109°28′），用"基态原子轨道直接成键"无法解释。</p>
+    <p><b>杂化轨道理论</b>（Pauling 提出）：原子成键时，中心原子将 <b>能量相近的原子轨道（如 2s 与 2p）先进行线性组合</b>（数目不变），得到一组能量相等、方向性更强的新轨道——<b>杂化轨道</b>。s 与 p 叠加使杂化轨道"<b>一头大一头小</b>"，大瓣朝键方向集中，与配体原子轨道<b>重叠更多、成键能力更强</b>。</p>
+    <p><b>基本规则：杂化轨道数 = 参与杂化的原子轨道数 = σ 键数 + 孤对电子对数。</b>π 键由未杂化的 p 轨道形成，不计入。</p>
+  </div>
+
+  <!-- ===== 02 数学描述 ===== -->
+  <div class="sec"><span class="no">02</span>数学描述：角度函数与实心曲面</div>
+  <p class="sec-sub">令方向单位向量 u=(sinθcosφ, sinθsinφ, cosθ)。指向 d_i 的杂化轨道角度函数为 h_i(u) = c_s + √3·c_p·(d_i·u)，其中 c_s²+c_p²=1，d_i·u = cosγ 为该方向与轨道方向的夹角余弦。等性杂化系数如下。</p>
+  <div class="math-card">
+    <div class="cap">等性杂化角度函数与系数</div>
+    <table>
+      <thead>
+        <tr><th>类型</th><th>c_s</th><th>c_p</th><th>角度函数 h_i(u)</th><th>方向 d_i</th><th>键角 / 构型</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sp</td><td class="mono">1/√2</td><td class="mono">1/√2</td><td class="mono">(1 + √3·cosγ)/√2</td><td class="mono">(0,0,±1)</td><td>180° / 直线</td></tr>
+        <tr><td>sp²</td><td class="mono">1/√3</td><td class="mono">√(2/3)</td><td class="mono">1/√3 + √2·cosγ</td><td class="mono">xy 面 120°×3</td><td>120° / 平面三角</td></tr>
+        <tr><td>sp³</td><td class="mono">1/2</td><td class="mono">√3/2</td><td class="mono">(1 + 3·cosγ)/2</td><td class="mono">四面体×4</td><td>109°28′ / 正四面体</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sec-sub">绘制：在球坐标网格上采样方向 u，取半径 r = r₀·(|h_i(u)|/h_max)^q（q=2.5，角度分布集中、瓣细长），再沿轨道方向 d_i 拉伸 1.6 倍，顶点 P = r·u 组成<b>实心曲面</b>；h&gt;0 区域为红色大瓣、h&lt;0 区域为蓝色小瓣。节面处 h=0 → r≈0，两瓣在原子核处相接。</p>
+
+  <!-- ===== 03 三种等性杂化 3D ===== -->
+  <div class="sec"><span class="no">03</span>三种等性杂化的形状</div>
+  <div class="grid">
+    <div class="orbitCard">
+      <div class="orbitBox" id="singleOrb"><div class="label">单个 sp³ 杂化轨道：大瓣（红）+ 小瓣（蓝）</div></div>
+      <p class="orbDesc"><b>单个杂化轨道</b>（d=(1,1,1)/√3）：键方向 h&gt;0 形成<b>大红瓣</b>，反方向 h&lt;0 形成<b>小蓝瓣</b>。节面 h=0 处 cosγ=−1/3，即与轨道方向夹角 <b>109.47°</b> 的圆锥面，分隔大瓣与小瓣。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="spOrb"><div class="label">sp：两个杂化轨道 · 180° 直线</div></div>
+      <p class="orbDesc"><b>sp 杂化</b>：d₁=(0,0,1)、d₂=(0,0,−1)，两轨道沿同轴反向，正瓣朝外、负瓣朝内，<b>键角 180°</b>（如 CO₂、C₂H₂）。c_s=c_p=1/√2。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="sp2Orb"><div class="label">sp²：三个杂化轨道 · 120° 平面三角</div></div>
+      <p class="orbDesc"><b>sp² 杂化</b>：d_k=(cos 2πk/3, sin 2πk/3, 0)，k=0,1,2，三轨道位于 xy 平面互成 <b>120°</b>（如 BF₃、C₂H₄），正瓣指向三角顶点。c_s=1/√3、c_p=√(2/3)。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="sp3Orb"><div class="label">sp³：四个杂化轨道 · 109°28′ 正四面体</div></div>
+      <p class="orbDesc"><b>sp³ 杂化</b>：d=(±1,±1,±1)/√3 四方向指向正四面体顶点，<b>键角 109°28′</b>（如 CH₄），大红瓣朝外、小蓝瓣朝中心。c_s=1/2、c_p=√3/2。</p>
+    </div>
+  </div>
+
+  <!-- ===== 04 杂化类型判断 ===== -->
+  <div class="sec"><span class="no">04</span>杂化类型的判断（考试核心方法）</div>
+  <div class="card">
+    <ul>
+      <li><b>第一步</b>：数中心原子的 <b>σ 键数</b>（单键算 1；双键、三键中只算 1 个 σ）与 <b>孤对电子对数</b>。</li>
+      <li><b>第二步</b>：n = σ 键数 + 孤对电子对数；n=2 → sp，n=3 → sp²，n=4 → sp³。</li>
+      <li><b>第三步</b>：结合 VSEPR 定构型——无孤对时：sp 直线、sp² 平面三角、sp³ 正四面体；有孤对时键角压缩（见 06）。</li>
+      <li>例：CO₂（C 有 2 个 σ、0 孤对 → n=2 → <b>sp</b>）；BF₃（3 个 σ → n=3 → <b>sp²</b>）；CH₄（4 个 σ → n=4 → <b>sp³</b>）。</li>
+    </ul>
+  </div>
+
+  <!-- ===== 05 常见分子速查 ===== -->
+  <div class="sec"><span class="no">05</span>常见分子杂化类型与空间构型速查</div>
+  <div class="math-card">
+    <table>
+      <thead>
+        <tr><th>分子</th><th class="center">中心原子 σ 键数</th><th class="center">孤对电子对数</th><th class="center">杂化类型</th><th>空间构型</th><th class="center">键角</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CO₂</td><td class="center">2</td><td class="center">0</td><td class="center">sp</td><td>直线</td><td class="center">180°</td></tr>
+        <tr><td>C₂H₂（每个 C）</td><td class="center">2</td><td class="center">0</td><td class="center">sp</td><td>直线</td><td class="center">180°</td></tr>
+        <tr><td>BF₃</td><td class="center">3</td><td class="center">0</td><td class="center">sp²</td><td>平面三角</td><td class="center">120°</td></tr>
+        <tr><td>C₂H₄（每个 C）</td><td class="center">3</td><td class="center">0</td><td class="center">sp²</td><td>平面三角</td><td class="center">120°</td></tr>
+        <tr><td>SO₂</td><td class="center">2</td><td class="center">1</td><td class="center">sp²</td><td>V 形</td><td class="center">≈119°</td></tr>
+        <tr><td>CH₄</td><td class="center">4</td><td class="center">0</td><td class="center">sp³</td><td>正四面体</td><td class="center">109.5°</td></tr>
+        <tr><td>NH₃</td><td class="center">3</td><td class="center">1</td><td class="center">sp³（不等性）</td><td>三角锥</td><td class="center">≈107°</td></tr>
+        <tr><td>H₂O</td><td class="center">2</td><td class="center">2</td><td class="center">sp³（不等性）</td><td>V 形</td><td class="center">≈104.5°</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 06 不等性杂化 ===== -->
+  <div class="sec"><span class="no">06</span>不等性杂化与键角</div>
+  <div class="card">
+    <ul>
+      <li><b>s 成分与键角的关系</b>：s 成分 = c_s² = −cosθ/(1−cosθ)。键角越小，s 成分越大。</li>
+      <li><b>NH₃</b>：sp³ 不等性杂化，孤对电子占据的轨道 s 成分增大（约 0.23），成键轨道 s 成分减小，键角被压缩至 <b>≈107°</b>（三角锥）。</li>
+      <li><b>H₂O</b>：sp³ 不等性杂化，两对孤对电子使 s 成分更大（约 0.20），键角压缩至 <b>≈104.5°</b>（V 形）。</li>
+      <li>原因：孤对电子只受一个原子核吸引、电子云更"胖"，对成键电子对排斥更大，挤压键角。</li>
+    </ul>
+  </div>
+
+  <!-- ===== 07 考点小结 ===== -->
+  <div class="sec"><span class="no">07</span>考点小结</div>
+  <div class="card" style="border-left:3px solid var(--accent);">
+    <ul>
+      <li><b>杂化轨道数 = σ 键数 + 孤对电子对数</b> → n=2/3/4 对应 sp / sp² / sp³。</li>
+      <li>等性杂化键角：sp <b>180°</b>、sp² <b>120°</b>、sp³ <b>109°28′</b>。</li>
+      <li>孤对电子压缩键角（不等性杂化）：NH₃ ≈107°、H₂O ≈104.5°。</li>
+      <li>π 键由未杂化 p 轨道形成：sp² 余 1 个 p、sp 余 2 个 p。</li>
+      <li>杂化轨道"一头大一头小"，大瓣朝键方向，成键能力比纯 s / 纯 p 更强。</li>
+    </ul>
+  </div>
+
+  <p class="ref">绘制说明：按角度函数 h_i(u)=c_s+√3·c_p·(d_i·u) 在球坐标网格采样，半径 r=r₀(|h|/h_max)^q（q=2.5），并沿轨道方向拉伸 1.6 倍生成实心曲面；红=正相位（大瓣）、蓝=负相位（小瓣）。数学描述参考：Chemistry LibreTexts（Hybrid Orbitals）、OpenStax Chemistry 2e、结构化学教材杂化轨道理论。曲面为角度形状示意，非真实电子云。</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+"use strict";
+
+function makeScene(containerId, draw, tiltX, tiltY) {
+  var el = document.getElementById(containerId);
+  var w = el.clientWidth || 400, h = el.clientHeight || 280;
+  var scene = new THREE.Scene();
+  if (tiltX) scene.rotation.x = tiltX;
+  if (tiltY) scene.rotation.y = tiltY;
+  var camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
+  camera.position.z = 5.5;
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) {
+    el.innerHTML = '<div class="label" style="color:#94a3b8">当前环境不支持 WebGL，无法显示 3D 模型</div>';
+    return;
+  }
+  renderer.setSize(w, h);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  el.appendChild(renderer.domElement);
+
+  var rotX = 0, rotY = 0, dragging = false, px = 0, py = 0;
+  function down(cx, cy) { dragging = true; px = cx; py = cy; }
+  function move(cx, cy) {
+    if (!dragging) return;
+    rotY += (cx - px) * 0.01;
+    rotX += (cy - py) * 0.01;
+    px = cx; py = cy;
+  }
+  function up() { dragging = false; }
+  renderer.domElement.addEventListener("mousedown", function (e) { down(e.clientX, e.clientY); });
+  window.addEventListener("mouseup", up);
+  window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
+  renderer.domElement.addEventListener("touchstart", function (e) { if (e.touches[0]) down(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  renderer.domElement.addEventListener("touchmove", function (e) { if (e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  renderer.domElement.addEventListener("touchend", up);
+
+  draw(scene);
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    scene.traverse(function (o) { if (o.userData.orb) { o.rotation.x = rotX; o.rotation.y = rotY; } });
+    renderer.render(scene, camera);
+  })();
+}
+
+function addLights(scene) {
+  var light = new THREE.PointLight(0xffffff, 1);
+  light.position.set(5, 5, 5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+}
+
+// 中心原子核（灰色小球）
+function nucleus(scene) {
+  var g = new THREE.SphereGeometry(0.13, 24, 24);
+  var m = new THREE.MeshPhongMaterial({ color: 0x334155 });
+  var n = new THREE.Mesh(g, m);
+  n.userData.orb = true;
+  scene.add(n);
+}
+
+// 按角度函数 h_i(u)=c_s+√3·c_p·(d_i·u) 生成杂化轨道实心曲面
+// 半径 r = R0·(|h|/h_max)^q（q=2.5 使角度分布集中、瓣细长），再沿轨道方向 d 拉伸 1.6 倍；
+// h>0 红（正相位），h<0 蓝（负相位）
+function hybridSurface(scene, d, kind, R0, colorPos, colorNeg) {
+  var dVec = new THREE.Vector3(d[0], d[1], d[2]).normalize();
+  var hMax;
+  if (kind === "sp") hMax = (1 + Math.sqrt(3)) / Math.sqrt(2);
+  else if (kind === "sp2") hMax = 1 / Math.sqrt(3) + Math.sqrt(2);
+  else hMax = 2; // sp3
+  var Q = 2.5, K = 1.6; // 角度集中指数 + 轴向拉伸倍数
+  var Nz = 48, Np = 88;
+  var positions = [], colors = [], indices = [];
+  for (var i = 0; i <= Nz; i++) {
+    var theta = Math.PI * i / Nz;
+    var ct = Math.cos(theta), st = Math.sin(theta);
+    for (var j = 0; j <= Np; j++) {
+      var phi = 2 * Math.PI * j / Np;
+      var ux = st * Math.cos(phi), uy = st * Math.sin(phi), uz = ct;
+      var cosg = ux * dVec.x + uy * dVec.y + uz * dVec.z;
+      var h;
+      if (kind === "sp") h = (1 + Math.sqrt(3) * cosg) / Math.sqrt(2);
+      else if (kind === "sp2") h = 1 / Math.sqrt(3) + Math.sqrt(2) * cosg;
+      else h = 0.5 + 1.5 * cosg; // sp3
+      var r = R0 * Math.pow(Math.abs(h) / hMax, Q) + 0.002; // 微小下限避免节面处法线奇异
+      // 顶点 P = r·u，然后沿 d 方向拉伸 K 倍（细长化）
+      var px = ux * r, py = uy * r, pz = uz * r;
+      var ppar = px * dVec.x + py * dVec.y + pz * dVec.z; // 沿 d 的分量
+      var ex = dVec.x * ppar, ey = dVec.y * ppar, ez = dVec.z * ppar;
+      var fx = px - ex, fy = py - ey, fz = pz - ez;       // 垂直分量
+      positions.push(K * ex + fx, K * ey + fy, K * ez + fz);
+      var c = h > 0 ? colorPos : colorNeg;
+      colors.push(c[0], c[1], c[2]);
+    }
+  }
+  for (var i = 0; i < Nz; i++) {
+    for (var j = 0; j < Np; j++) {
+      var a = i * (Np + 1) + j, b = a + 1, c2 = a + (Np + 1), d2 = c2 + 1;
+      indices.push(a, c2, b, b, c2, d2);
+    }
+  }
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geo.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  var norm = geo.attributes.normal;
+  for (var k = 0; k < norm.count; k++) {
+    if (isNaN(norm.getX(k)) || isNaN(norm.getY(k)) || isNaN(norm.getZ(k))) {
+      norm.setXYZ(k, 0, 1, 0);
+    }
+  }
+  var mat = new THREE.MeshPhongMaterial({ vertexColors: true, side: THREE.DoubleSide, shininess: 60 });
+  var mesh = new THREE.Mesh(geo, mat);
+  mesh.userData.orb = true;
+  scene.add(mesh);
+}
+
+var RED  = [0.937, 0.267, 0.267];  // #ef4444 正相位（大瓣）
+var BLUE = [0.376, 0.490, 0.965];  // #3b82f6 负相位（小瓣）
+
+// ===== 1. 单个 sp³ 杂化轨道：实心不对称哑铃 =====
+makeScene("singleOrb", function (scene) {
+  addLights(scene);
+  nucleus(scene);
+  hybridSurface(scene, [1, 1, 1], "sp3", 1.4, RED, BLUE);
+}, 0.55, -0.35);
+
+// ===== 2. sp：d=(0,0,±1)，180° 直线 =====
+makeScene("spOrb", function (scene) {
+  addLights(scene);
+  nucleus(scene);
+  hybridSurface(scene, [0, 0, 1], "sp", 1.4, RED, BLUE);
+  hybridSurface(scene, [0, 0, -1], "sp", 1.4, RED, BLUE);
+}, 0.7, 0);
+
+// ===== 3. sp²：xy 平面 120° =====
+makeScene("sp2Orb", function (scene) {
+  addLights(scene);
+  nucleus(scene);
+  for (var k = 0; k < 3; k++) {
+    var ang = (2 * Math.PI / 3) * k;
+    hybridSurface(scene, [Math.cos(ang), Math.sin(ang), 0], "sp2", 1.4, RED, BLUE);
+  }
+}, 0.15, 0);
+
+// ===== 4. sp³：正四面体 =====
+makeScene("sp3Orb", function (scene) {
+  addLights(scene);
+  nucleus(scene);
+  [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].forEach(function (d) {
+    hybridSurface(scene, d, "sp3", 1.4, RED, BLUE);
+  });
+}, 0.5, -0.35);
+</script>
+</body>
+</html>

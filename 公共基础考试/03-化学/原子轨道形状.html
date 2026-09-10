@@ -1,0 +1,241 @@
+<!--
+  用途：注册电气工程师基础考试复习 —— 公共基础（化学）原子轨道形状可视化页
+  知识点：原子结构与原子轨道（s/p/d 轨道形状、量子数 l 与 m、各能级轨道数）
+  创建日期：2026-09-10
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原子轨道形状 · s / p / d（复习笔记）</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#f8fafc;
+    --ink:#0f172a;
+    --ink-2:#64748b;
+    --line:#e2e8f0;
+    --accent:#3b82f6;
+    --accent-soft:#eff6ff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    padding:26px 20px 48px;
+  }
+  .wrap{max-width:1120px;margin:0 auto;}
+  h1{font-size:23px;font-weight:700;letter-spacing:.01em;}
+  .lead{margin-top:6px;font-size:13.5px;color:var(--ink-2);max-width:900px;}
+  .lead b{color:var(--ink);font-weight:600;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+  .orbitCard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .orbitBox{
+    background:#1e293b;border-bottom:1px solid var(--line);
+    height:300px;position:relative;
+  }
+  .label{
+    position:absolute;bottom:10px;left:14px;color:#cbd5e1;font-size:12.5px;
+    background:rgba(15,23,42,.55);padding:3px 10px;border-radius:999px;letter-spacing:.03em;
+  }
+  .orbDesc{padding:12px 16px;font-size:13px;color:var(--ink-2);line-height:1.75;}
+  .orbDesc b{color:var(--ink);font-weight:600;}
+
+  .summary{
+    margin-top:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:10px;padding:16px 20px;max-width:900px;
+  }
+  .summary-title{font-size:14px;font-weight:700;margin-bottom:10px;}
+  .sum-row{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12.5px;color:var(--ink-2);}
+  .sum-row span{display:inline-flex;align-items:baseline;gap:6px;}
+  .sum-row b.k{color:var(--ink);font-weight:700;font-size:13px;}
+  .notes{
+    margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:13px 18px;font-size:12.5px;color:var(--ink-2);max-width:900px;line-height:1.8;
+  }
+  .notes b{color:var(--ink);font-weight:600;}
+
+  @media (max-width:720px){
+    .grid{grid-template-columns:1fr;}
+    .orbitBox{height:260px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>原子轨道形状 · s / p / d</h1>
+  <p class="lead">原子轨道的形状由<b>角量子数 l</b> 决定：l=0 为 s（球形）、l=1 为 p（哑铃形）、l=2 为 d（花瓣形）；<b>磁量子数 m</b> 决定取向个数（2l+1）。下方 3D 模型可<b>鼠标拖拽旋转、滚轮缩放</b>。</p>
+
+  <div class="grid">
+    <div class="orbitCard">
+      <div class="orbitBox" id="sOrb"><div class="label">s 轨道（l=0）：1s / 2s / 3s 球形，半径随 n 增大</div></div>
+      <p class="orbDesc"><b>1s → 2s → 3s</b>：形状都是球形，但半径随主量子数 n 增大而增大（能级升高、离核更远）。每个能层只有 1 个 s 轨道（m=0）。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="pOrb"><div class="label">p 轨道（l=1）：px / py / pz 三个哑铃，互相垂直</div></div>
+      <p class="orbDesc"><b>p 轨道为哑铃形</b>，m = −1, 0, +1 对应三个取向 <b>px、py、pz</b>，沿 x、y、z 轴方向伸展、彼此垂直。第 2 能层起才出现 p 轨道。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="dOrb1"><div class="label">d 轨道（l=2）：四瓣花瓣形（dxy）</div></div>
+      <p class="orbDesc"><b>d 轨道为花瓣形</b>，m = −2…+2 共 5 个取向。图为 <b>dxy</b>：四个花瓣分布在 xy 平面四个象限（x、y 轴夹角 45° 方向）。</p>
+    </div>
+    <div class="orbitCard">
+      <div class="orbitBox" id="dOrb2"><div class="label">d 轨道（l=2）：双哑铃 + 赤道环（dz²）</div></div>
+      <p class="orbDesc"><b>dz²</b>：沿 z 轴上下两个哑铃瓣，中间带一个赤道环，是 d 轨道中形状较特殊的一个（其余 4 个均为四瓣形）。</p>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">轨道类型小结（考点）</div>
+    <div class="sum-row">
+      <span><b class="k">s</b> l=0 · m 只有 1 个值 → <b>1 个取向</b>（球形）</span>
+      <span><b class="k">p</b> l=1 · m = −1,0,+1 → <b>3 个取向</b>（px、py、pz）</span>
+      <span><b class="k">d</b> l=2 · m = −2…+2 → <b>5 个取向</b>（dxy、dxz、dyz、dx²−y²、dz²）</span>
+      <span><b class="k">每层轨道数</b> = n²：第 1 层 1 个（1s），第 2 层 4 个（2s+2p），第 3 层 9 个（3s+3p+3d）</span>
+    </div>
+  </div>
+
+  <div class="notes">
+    <b>说明：</b>图为简化形状示意，用于记忆轨道“长什么样”；实际电子云为概率密度分布，无明确边界。p、d 轨道花瓣的正负号（相位）在成键与杂化轨道中才有意义，此处不展开。
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+"use strict";
+
+// 创建可拖拽旋转的 3D 场景（参考 three.js 常规用法）
+function makeScene(containerId, draw) {
+  var el = document.getElementById(containerId);
+  var w = el.clientWidth || 400, h = el.clientHeight || 280;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
+  camera.position.z = 5.5;
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) {
+    el.innerHTML = '<div class="label" style="color:#94a3b8">当前环境不支持 WebGL，无法显示 3D 模型</div>';
+    return;
+  }
+  renderer.setSize(w, h);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  el.appendChild(renderer.domElement);
+
+  var rotX = 0, rotY = 0, dragging = false, px = 0, py = 0;
+  function down(cx, cy) { dragging = true; px = cx; py = cy; }
+  function move(cx, cy) {
+    if (!dragging) return;
+    rotY += (cx - px) * 0.01;
+    rotX += (cy - py) * 0.01;
+    px = cx; py = cy;
+  }
+  function up() { dragging = false; }
+  renderer.domElement.addEventListener("mousedown", function (e) { down(e.clientX, e.clientY); });
+  window.addEventListener("mouseup", up);
+  window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
+  renderer.domElement.addEventListener("touchstart", function (e) { if (e.touches[0]) down(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  renderer.domElement.addEventListener("touchmove", function (e) { if (e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  renderer.domElement.addEventListener("touchend", up);
+
+  draw(scene);
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    scene.traverse(function (o) { if (o.userData.orb) { o.rotation.x = rotX; o.rotation.y = rotY; } });
+    renderer.render(scene, camera);
+  })();
+}
+
+function addLights(scene) {
+  var light = new THREE.PointLight(0xffffff, 1);
+  light.position.set(5, 5, 5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+}
+
+// 半透明球体
+function sphere(r, color, opacity) {
+  var g = new THREE.SphereGeometry(r, 32, 32);
+  var m = new THREE.MeshPhongMaterial({ color: color, transparent: true, opacity: opacity || 0.7, shininess: 80 });
+  var mesh = new THREE.Mesh(g, m);
+  mesh.userData.orb = true;
+  return mesh;
+}
+
+// ===== s 轨道：1s / 2s / 3s 三个球，半径随 n 增大 =====
+makeScene("sOrb", function (scene) {
+  addLights(scene);
+  var data = [
+    { r: 0.55, x: -2.6, color: 0x93c5fd },
+    { r: 1.0,  x: 0,    color: 0x3b82f6 },
+    { r: 1.4,  x: 2.6,  color: 0x1d4ed8 }
+  ];
+  data.forEach(function (d) {
+    var s = sphere(d.r, d.color, 0.55);
+    s.position.x = d.x;
+    scene.add(s);
+  });
+  scene.rotation.x = 0.4; // 初始略带角度更好看
+});
+
+// ===== p 轨道：px / py / pz 三个互相垂直的哑铃（沿轴拉长的椭球瓣） =====
+makeScene("pOrb", function (scene) {
+  addLights(scene);
+  var groups = [
+    { axis: "x", color: 0xef4444 },
+    { axis: "y", color: 0x22c55e },
+    { axis: "z", color: 0x3b82f6 }
+  ];
+  groups.forEach(function (g) {
+    var grp = new THREE.Group();
+    [0.95, -0.95].forEach(function (off) {
+      var lobe = sphere(0.42, g.color, 0.78);
+      lobe.scale.set(1.9, 1, 1);          // 沿局部 x 拉长成椭球（哑铃瓣）
+      if (g.axis === "y") lobe.rotation.z = Math.PI / 2;
+      if (g.axis === "z") lobe.rotation.y = Math.PI / 2;
+      var pos = { x: 0, y: 0, z: 0 };
+      pos[g.axis] = off;
+      lobe.position.set(pos.x, pos.y, pos.z);
+      grp.add(lobe);
+    });
+    grp.userData.orb = true;
+    scene.add(grp);
+  });
+});
+
+// ===== d 轨道 dxy：四个沿对角线伸展的椭球花瓣 =====
+makeScene("dOrb1", function (scene) {
+  addLights(scene);
+  [[0.78, 0.78, 0], [-0.78, 0.78, 0], [0.78, -0.78, 0], [-0.78, -0.78, 0]].forEach(function (p) {
+    var s = sphere(0.4, 0xa855f7, 0.78);
+    s.scale.set(1.8, 1, 1);               // 先沿 x 拉长
+    s.rotation.z = Math.atan2(p[1], p[0]); // 再转到对角线方向（45°）
+    s.position.set(p[0], p[1], p[2]);
+    scene.add(s);
+  });
+});
+
+// ===== d 轨道 dz²：z 轴上下两个拉长瓣 + 赤道环 =====
+makeScene("dOrb2", function (scene) {
+  addLights(scene);
+  var top = sphere(0.36, 0xf59e0b, 0.78);
+  top.scale.set(1, 1, 1.9);                // 沿 z 拉长
+  top.position.z = 0.85;
+  scene.add(top);
+  var bot = sphere(0.36, 0xf59e0b, 0.78);
+  bot.scale.set(1, 1, 1.9);
+  bot.position.z = -0.85;
+  scene.add(bot);
+  var torus = new THREE.Mesh(
+    new THREE.TorusGeometry(0.55, 0.14, 16, 32),
+    new THREE.MeshPhongMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.7, shininess: 60 })
+  );                                       // 环默认在 xy 平面，即 dz² 的赤道环
+  torus.userData.orb = true;
+  scene.add(torus);
+});
+</script>
+</body>
+</html>
