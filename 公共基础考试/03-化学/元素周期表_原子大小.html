@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>元素周期表 · 原子大小（前 5 周期）</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#f8fafc;
+    --ink:#0f172a;
+    --ink-2:#64748b;
+    --line:#e2e8f0;
+    --accent:#3b82f6;
+    --accent-soft:#eff6ff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;
+    padding:22px 16px 36px;
+  }
+  .wrap{max-width:1120px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:.01em;}
+  .lead{margin-top:6px;font-size:13px;color:var(--ink-2);max-width:880px;}
+  .lead b{color:var(--ink);font-weight:600;}
+  .rules{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;}
+  .rule{
+    font-size:12px;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+    padding:5px 12px;border-radius:999px;
+  }
+
+  /* 周期表：自适应宽度，无横向滚动 */
+  .ptable{margin-top:14px;display:flex;flex-direction:column;gap:4px;}
+  .prow{display:grid;grid-template-columns:26px repeat(18,minmax(0,1fr));gap:4px;}
+  .pnum{
+    display:flex;align-items:center;justify-content:center;
+    writing-mode:vertical-rl;letter-spacing:.14em;
+    font-size:11.5px;color:var(--ink-2);user-select:none;
+  }
+  .cell{
+    height:94px;background:#fff;border:1px solid var(--line);border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;
+    transition:border-color .15s ease,background .15s ease;cursor:default;
+  }
+  .cell:hover{border-color:var(--accent);background:var(--accent-soft);}
+  .cell.empty{background:transparent;border-color:transparent;}
+  .cell.empty:hover{background:transparent;border-color:transparent;}
+  .atom-area{
+    height:52px;width:100%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .atom{
+    border-radius:50%;background:radial-gradient(circle at 32% 30%,#60a5fa,#2563eb 68%,#1d4ed8);
+    flex:0 0 auto;box-shadow:0 1px 4px rgba(37,99,235,.30);
+  }
+  .sym{flex:0 0 auto;font-size:clamp(11px,1.6vw,14px);font-weight:700;letter-spacing:.02em;}
+  .r{flex:0 0 auto;margin-top:1px;font-size:clamp(9px,1.25vw,11px);color:var(--ink-2);}
+  .r::after{content:" pm";}
+
+  /* 图例 */
+  .legend-bar{
+    margin-top:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--ink-2);
+  }
+  .legend-bar .sample{display:inline-flex;align-items:center;gap:8px;}
+  .lg-dot{border-radius:50%;background:radial-gradient(circle at 32% 30%,#60a5fa,#2563eb 68%,#1d4ed8);}
+
+  /* 规律说明 */
+  .laws{
+    margin-top:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:8px;padding:14px 18px;max-width:880px;
+  }
+  .laws-title{font-size:14px;font-weight:700;margin-bottom:8px;}
+  .laws ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .laws li{font-size:12.5px;color:var(--ink-2);padding-left:16px;position:relative;line-height:1.7;}
+  .laws li::before{
+    content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  .laws b{color:var(--ink);font-weight:600;}
+  .laws .pm{font-family:"JetBrains Mono",Consolas,monospace;color:#1d4ed8;font-size:12px;}
+
+  .notes{
+    margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:8px;
+    padding:12px 16px;font-size:12px;color:var(--ink-2);max-width:880px;line-height:1.8;
+  }
+  .notes b{color:var(--ink);font-weight:600;}
+
+  @media (max-width:640px){
+    .cell{height:82px;}
+    .atom-area{height:44px;}
+    .prow{grid-template-columns:22px repeat(18,minmax(0,1fr));gap:3px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>元素周期表 · 原子大小（前 5 周期，1–54 号元素）</h1>
+  <p class="lead">圆的大小代表原子半径：<b>同周期左大右小</b>（核电荷增大、对电子吸引增强），<b>同族上小下大</b>（电子层数增多）。悬停格子可查看元素名称与半径数值。</p>
+  <div class="rules">
+    <span class="rule">第 1 周期 · 2 个元素</span>
+    <span class="rule">第 2、3 周期 · 各 8 个</span>
+    <span class="rule">第 4、5 周期 · 各 18 个（含过渡金属）</span>
+  </div>
+
+  <div class="ptable" id="ptable"></div>
+
+  <div class="legend-bar">
+    <span>尺寸对照：</span>
+    <span class="sample"><span class="lg-dot" style="width:22px;height:22px"></span>小（稀有气体）</span>
+    <span class="sample"><span class="lg-dot" style="width:40px;height:40px"></span>中（碱金属）</span>
+    <span class="sample"><span class="lg-dot" style="width:64px;height:64px"></span>大（Rb）</span>
+  </div>
+
+  <div class="laws">
+    <div class="laws-title">原子半径递变规律</div>
+    <ul>
+      <li><b>同一周期（左 → 右）</b>：核电荷依次增大，对外层电子引力增强，原子半径<b>逐渐减小</b>。如第 2 周期 Li（<span class="pm">167</span>）→ F（<span class="pm">42</span>）pm。</li>
+      <li><b>同一主族（上 → 下）</b>：电子层数依次增多，原子半径<b>明显增大</b>。如第 IA 族 Li（<span class="pm">167</span>）→ Na（<span class="pm">190</span>）→ K（<span class="pm">243</span>）→ Rb（<span class="pm">265</span>）pm。</li>
+      <li><b>过渡金属段（第 4、5 周期中部）</b>：半径随原子序数<b>缓慢减小</b>，变化比主族平缓，如 Sc（<span class="pm">184</span>）→ Zn（<span class="pm">142</span>）、Y（<span class="pm">212</span>）→ Cd（<span class="pm">161</span>）pm。</li>
+      <li><b>稀有气体</b>：半径常取计算值或范德华半径口径，在周期内偏小（He <span class="pm">31</span>、Ne <span class="pm">38</span> pm），不代表共价半径，横向对比时注意口径。</li>
+    </ul>
+  </div>
+
+  <div class="notes">
+    <b>数据说明：</b>原子半径采用常见参考值（单位 pm，不同资料取值略有差异，如 Li 约 152–167、Na 约 186–190 pm）；圆直径按“半径的 1.8 次方”缩放并设最小 / 最大尺寸，用于适当放大视觉差异，并非严格等比。
+  </div>
+</div>
+
+<script>
+"use strict";
+
+// 每周期 18 列槽位；null 表示该列无元素（空位）。数据 = 原子序 / 符号 / 名称 / 原子半径(pm)
+var DATA = [
+  // 第 1 周期
+  [ {n:1, sym:"H",  name:"氢",  r:53},  null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+    {n:2, sym:"He", name:"氦",  r:31} ],
+  // 第 2 周期
+  [ {n:3, sym:"Li", name:"锂",  r:167},
+    {n:4, sym:"Be", name:"铍",  r:112}, null,null,null,null,null,null,null,null,null,null,
+    {n:5, sym:"B",  name:"硼",  r:87},
+    {n:6, sym:"C",  name:"碳",  r:67},
+    {n:7, sym:"N",  name:"氮",  r:56},
+    {n:8, sym:"O",  name:"氧",  r:48},
+    {n:9, sym:"F",  name:"氟",  r:42},
+    {n:10,sym:"Ne", name:"氖",  r:38} ],
+  // 第 3 周期
+  [ {n:11,sym:"Na", name:"钠",  r:190},
+    {n:12,sym:"Mg", name:"镁",  r:145}, null,null,null,null,null,null,null,null,null,null,
+    {n:13,sym:"Al", name:"铝",  r:118},
+    {n:14,sym:"Si", name:"硅",  r:111},
+    {n:15,sym:"P",  name:"磷",  r:98},
+    {n:16,sym:"S",  name:"硫",  r:88},
+    {n:17,sym:"Cl", name:"氯",  r:79},
+    {n:18,sym:"Ar", name:"氩",  r:71} ],
+  // 第 4 周期
+  [ {n:19,sym:"K",  name:"钾",  r:243},
+    {n:20,sym:"Ca", name:"钙",  r:194},
+    {n:21,sym:"Sc", name:"钪",  r:184},
+    {n:22,sym:"Ti", name:"钛",  r:176},
+    {n:23,sym:"V",  name:"钒",  r:171},
+    {n:24,sym:"Cr", name:"铬",  r:166},
+    {n:25,sym:"Mn", name:"锰",  r:161},
+    {n:26,sym:"Fe", name:"铁",  r:156},
+    {n:27,sym:"Co", name:"钴",  r:152},
+    {n:28,sym:"Ni", name:"镍",  r:149},
+    {n:29,sym:"Cu", name:"铜",  r:145},
+    {n:30,sym:"Zn", name:"锌",  r:142},
+    {n:31,sym:"Ga", name:"镓",  r:136},
+    {n:32,sym:"Ge", name:"锗",  r:125},
+    {n:33,sym:"As", name:"砷",  r:114},
+    {n:34,sym:"Se", name:"硒",  r:103},
+    {n:35,sym:"Br", name:"溴",  r:94},
+    {n:36,sym:"Kr", name:"氪",  r:88} ],
+  // 第 5 周期
+  [ {n:37,sym:"Rb", name:"铷",  r:265},
+    {n:38,sym:"Sr", name:"锶",  r:219},
+    {n:39,sym:"Y",  name:"钇",  r:212},
+    {n:40,sym:"Zr", name:"锆",  r:206},
+    {n:41,sym:"Nb", name:"铌",  r:198},
+    {n:42,sym:"Mo", name:"钼",  r:190},
+    {n:43,sym:"Tc", name:"锝",  r:183},
+    {n:44,sym:"Ru", name:"钌",  r:178},
+    {n:45,sym:"Rh", name:"铑",  r:173},
+    {n:46,sym:"Pd", name:"钯",  r:169},
+    {n:47,sym:"Ag", name:"银",  r:165},
+    {n:48,sym:"Cd", name:"镉",  r:161},
+    {n:49,sym:"In", name:"铟",  r:156},
+    {n:50,sym:"Sn", name:"锡",  r:145},
+    {n:51,sym:"Sb", name:"锑",  r:133},
+    {n:52,sym:"Te", name:"碲",  r:123},
+    {n:53,sym:"I",  name:"碘",  r:115},
+    {n:54,sym:"Xe", name:"氙",  r:108} ]
+];
+
+var MAX_R = 265;
+
+// 圆直径占格子宽度的百分比：30% ~ 82%，按半径 1.8 次方缩放，放大差异
+function dotPct(r) {
+  var t = Math.pow(r / MAX_R, 1.8);
+  return Math.round(30 + (82 - 30) * t);
+}
+
+var wrap = document.getElementById("ptable");
+DATA.forEach(function (row, i) {
+  var prow = document.createElement("div");
+  prow.className = "prow";
+
+  var lab = document.createElement("div");
+  lab.className = "pnum";
+  lab.textContent = "第" + (i + 1) + "周期";
+  prow.appendChild(lab);
+
+  row.forEach(function (el) {
+    var cell = document.createElement("div");
+    if (!el) {
+      cell.className = "cell empty";
+      prow.appendChild(cell);
+      return;
+    }
+    cell.className = "cell";
+    cell.title = el.name + " " + el.sym + "（原子序 " + el.n + "）· 原子半径 " + el.r + " pm";
+    var p = dotPct(el.r);
+    cell.innerHTML =
+      '<div class="atom-area"><div class="atom" style="width:' + p + "%;height:" + p + '%"></div></div>' +
+      '<div class="sym">' + el.sym + "</div>" +
+      '<div class="r">' + el.r + "</div>";
+    prow.appendChild(cell);
+  });
+
+  wrap.appendChild(prow);
+});
+</script>
+</body>
+</html>
